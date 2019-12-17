@@ -120,30 +120,16 @@ red_channel = [(d[0], 0, 0) for d in pixel_values]
 green_channel = [(0, d[1], 0) for d in pixel_values]
 blue_channel = [(0, 0, d[2]) for d in pixel_values]
 
-
-#plotting 4 images in 1
-# fig, ax =plt.subplots(ncols=2, nrows=2)
-
-# ax[0,0].imshow(compressed_img)
-# ax[0,0].set_title("Original")
-
+#showing
 compressed_img.putdata(red_channel)
 compressed_img.show()
-# ax[0,1].imshow(compressed_img)
-# ax[0,1].set_title("Red Channel")
 
 compressed_img.putdata(green_channel)
 compressed_img.show()
-# ax[1,0].imshow(compressed_img)
-# ax[1,0].set_title("Green Channel")
 
 compressed_img.putdata(blue_channel)
 compressed_img.show()
-# ax[1,1].imshow(compressed_img)
-# ax[1,1].set_title("Blue Channel")
 
-# plt.show()
-#end of plotting
 
 ### END of RGB #####
 
@@ -173,16 +159,12 @@ for SNR_db in SNR_range:
 
         # converting bits in string to int and appending them to list
         single_polar_arr = [int(bit) for bit in batch_of_bit_stream]
-        # for bit in batch_of_bit_stream:
-        #     single_polar_arr.append(int(bit))  
-
+ 
         bit_stream_array.extend(single_polar_arr)
         single_polar_arr = np.array(single_polar_arr, dtype=np.dtype('i1'))  # making list to numpy array
 
         bipolar = 2 * single_polar_arr - 1  # formula for converting unipolar values to bipolar
-
         num_of_bits = len(bipolar)
-
         sample_len = 2 * np.pi
 
         sample_range = np.linspace(0, sample_len, size)
